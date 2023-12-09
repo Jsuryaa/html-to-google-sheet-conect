@@ -1,0 +1,14 @@
+function doPost(e) {
+  if (e && e.parameter) {
+    const ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1Uk1TcfC5F2kqPeZhdW6WrkGeR0ko6T5hl3FmvU3NNvA/edit#gid=0");
+    const sheet = ss.getSheetByName("Sheet1");
+
+    const data = [e.parameter.name, e.parameter.email, e.parameter.phone];
+    
+    sheet.appendRow(data);
+
+    return ContentService.createTextOutput("Success");
+  } else {
+    return ContentService.createTextOutput("Error: Invalid POST data");
+  }
+}
